@@ -1,27 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
-import Assets from './utils/Assets';
-import Highcharts from 'highcharts'
-import HighchartsReact from 'highcharts-react-official'
+import LoginPage from './pages/LogIn';
+import DashboardPage from './pages/Dashboard';
 
-function App() {
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
-    <div className="ctnr">
-      <div className="bg-white rounded-xl p-10 w-80 flex flex-col items-center justify-center">
-        <div className='items-center py-2'>
-          <img src={Assets.Icon} className="w-10 h-full mr-3 inline-block" alt="logo" />
-          <img src={Assets.IconWord} className="w-32 bg-contain inline-block" alt="logo" />
-        </div>
+    <Router>
+      <Routes>
+        <Route 
+          path="/login" 
+          element={isLoggedIn ? <Navigate to="/dashboard" /> : <LoginPage onLogin={handleLogin} />} 
+        />
 
-        <React.Fragment>
-          <h1 className="text-2xl font-bold">Log-in</h1>
-          <input className="w-full p-3 my-3 border border-gray-300 rounded" type="text" placeholder="Username" />
-          <input className="w-full p-3 my-3 border border-gray-300 rounded" type="password" placeholder="Password" />
-        </React.Fragment>
-      </div>
-    </div>
+        <Route path="/dashboard" element={isLoggedIn ? <DashboardPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
+        <Route path="/" element={<Navigate to="/login" />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

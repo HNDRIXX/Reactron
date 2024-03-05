@@ -1,7 +1,7 @@
 const http = require('http')
 const fs = require('fs')
 const path = require('path')
-const {app, BrowserWindow, protocol} = require('electron')
+const {app, BrowserWindow } = require('electron')
 
 require('@electron/remote/main').initialize()
 
@@ -23,8 +23,7 @@ function createWindow () {
 
 app.on('ready', () => {
     createWindow()
-});
-
+})
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
