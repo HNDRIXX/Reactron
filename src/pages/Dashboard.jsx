@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import '../utils/styles/Dashboard.css'
 
 import Highcharts from 'highcharts';
 import HighchartsMore from 'highcharts/highcharts-more';
@@ -20,10 +21,14 @@ function Dashboard({ onLogout }) {
     useEffect(() => {    
         if (lineChartRef.current){
             Highcharts.chart('lineGraph', {
+                chart: {
+                    backgroundColor: 'rgba(0, 0, 0, 0)',
+                },
                 title: {
                     text: 'Active Graph',
                     align: 'left'
                 },
+
                 subtitle: {
                     text: 'Lorem ipsum dolor sit amet',
                     align: 'left'
@@ -100,7 +105,8 @@ function Dashboard({ onLogout }) {
             Highcharts.chart('barGraph', {
                 chart: {
                     type: 'bar',
-                    height: 360
+                    height: 360,
+                    backgroundColor: 'rgba(0, 0, 0, 0)',
                 },
                 title: {
                     text: 'Active Graph',
@@ -256,21 +262,23 @@ function Dashboard({ onLogout }) {
             onLogout={onLogout}
         />
 
-        <div id="container" className="bg-gray-100 overflow-x-hidden overflow-y-scroll w-screen m-3 p-3  rounded">
-            <p className='text-2xl text-blue-400 font-bold'>Welcome, Patrick!</p>
+        <div id="container" className="bg-gray-100 overflow-hidden w-screen m-3 p-3 rounded">
+            <div className='wrapper overflow-y-scroll w-full h-full'>
+                <p className='text-2xl text-blue-400 font-bold'>Welcome, Patrick!</p>
 
-            <div className='flex flex-row items-center justify-center'>
-                <div className='bg-gray-100 w-1/2 shadow-md m-3 px-3 rounded'>
-                    <div ref={chartContainerRef} id="cntr"></div> 
+                <div className='flex flex-row gap-5 items-center justify-center'>
+                    <div className='flex bg-gray-200 w-1/2 items-center justify-center shadow-md rounded' >
+                        <div ref={chartContainerRef} id="cntr"></div> 
+                    </div>
+
+                    <div className='bg-gray-200 w-1/2 shadow-md rounded'>
+                        <div ref={barChartRef} id="barGraph"></div>
+                    </div>
                 </div>
 
-                <div className='bg-gray-100 w-1/2 shadow-md rounded'>
-                    <div ref={barChartRef} id="barGraph"></div>
+                <div className='bg-gray-200 shadow-md mt-5 px-3 rounded'>
+                    <div ref={lineChartRef} id="lineGraph" className=''></div>
                 </div>
-            </div>
-
-            <div className='bg-gray-100 shadow-md mx-2 px-3 rounded'>
-                <div ref={lineChartRef} id="lineGraph" className=''></div>
             </div>
         </div>
     </div>

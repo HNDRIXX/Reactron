@@ -1,7 +1,7 @@
 const http = require('http')
 const fs = require('fs')
 const path = require('path')
-const {app, BrowserWindow } = require('electron')
+const {app, BrowserWindow, protocol} = require('electron')
 
 require('@electron/remote/main').initialize()
 
