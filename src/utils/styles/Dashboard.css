@@ -6,3 +6,16 @@
 .wrapper::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
+
+.main {
+    animation: fade-in 2s;
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 100;
+    }
+  }

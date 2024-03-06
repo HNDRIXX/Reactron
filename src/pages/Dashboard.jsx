@@ -257,7 +257,7 @@ function Dashboard({ onLogout }) {
       }, []);
 
   return (
-    <div className='h-screen flex'>
+    <div className='main h-screen flex'>
         <Sidebar 
             onLogout={onLogout}
         />
@@ -267,7 +267,7 @@ function Dashboard({ onLogout }) {
                 <p className='text-2xl text-blue-400 font-bold'>Welcome, Patrick!</p>
 
                 <div className='flex flex-row gap-5 items-center justify-center'>
-                    <div className='flex bg-gray-200 w-1/2 items-center justify-center shadow-md rounded' >
+                    <div className='flex bg-white w-1/2 items-center justify-center shadow-md rounded' >
                         <div ref={chartContainerRef} id="cntr"></div> 
                     </div>
 

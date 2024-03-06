@@ -5,20 +5,34 @@ const {app, BrowserWindow, protocol} = require('electron')
 
 require('@electron/remote/main').initialize()
 
+let win
+
 function createWindow () {
-    const win = new BrowserWindow({
+    win = new BrowserWindow({
         width: 800,
         height: 600,
-        webPreferences: {
-            nodeIntegration: true,
-            enableRemoteModule: true
-        },
+        // webPreferences: {
+        //     nodeIntegration: true,
+        //     enableRemoteModule: true
+        // },
         icon: __dirname + '/favicon.ico',
     })
 
     win.maximize()
     win.setMenuBarVisibility(false)
-    win.loadURL('http://localhost:3000')
+
+    const appURL = app.isPackaged
+        ? url.format({
+            pathname: path.join(__dirname, "/index.html"),
+            protocol: "file:",
+            slashes: true,
+        })
+        : "http://localhost:3000";
+
+    win.loadURL(appURL)
+    win.webContents.on('did-fail-load' , () => {
+        win.loadURL(appURL)
+    })
 }
 
 app.on('ready', () => {

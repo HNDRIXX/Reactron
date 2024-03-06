@@ -10,7 +10,7 @@ export default function Sidebar({ onLogout }) {
 
     return (
         <React.Fragment>
-            <MagicMotion>
+            <MagicMotion transition={{ duration: 0 }}>
                 <aside
                     style={{
                         marginBottom: ".7rem",
@@ -27,6 +27,7 @@ export default function Sidebar({ onLogout }) {
                         gap: "3rem",
                         color: "#878787",
                         overflow: "hidden",
+                        transition: 'none',
                     }}
 
                     className="shadow-xl"
@@ -39,10 +40,28 @@ export default function Sidebar({ onLogout }) {
                             justifyContent: "space-between",
                         }}
                     >
-                        {!isCollapsed && <img src={Assets.IconWord} className="w-20 bg-contain inline-block" alt="logo" />}
+                        {!isCollapsed && (
+                            <div className="flex flex-column">
+                                <div>
+                                <svg
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                height="4em"
+                                width="4em"
+                                >
+                                <path d="M12 2C6.579 2 2 6.579 2 12s4.579 10 10 10 10-4.579 10-10S17.421 2 12 2zm0 5c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zm-5.106 9.772c.897-1.32 2.393-2.2 4.106-2.2h2c1.714 0 3.209.88 4.106 2.2C15.828 18.14 14.015 19 12 19s-3.828-.86-5.106-2.228z" />
+                                </svg>
+                                </div>
+
+                                <div>
+                                    <p>Patrick Lofranco</p>
+                                    <p>Mobile Developer</p>
+                                </div>
+                            </div>
+                        )}
 
                         <button
-                            style={{ cursor: "pointer", padding: 0, border: 0 }}
+                            style={{ cursor: "pointer", padding: 0, border: 0, }}
                             onClick={() => setIsCollapsed(!isCollapsed)}
                             title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
                         >
@@ -65,19 +84,20 @@ export default function Sidebar({ onLogout }) {
                                 </svg>
                             ) : (
                                 <svg
-                                    style={{ minWidth: "24px", minHeight: "24px" }}
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M22.2877 11.0001V13.0001H7.80237L11.045 16.2428L9.63079 17.657L3.97394 12.0001L9.63079 6.34326L11.045 7.75748L7.80236 11.0001H22.2877Z"
-                                        fill="currentColor"
-                                    />
-                                    <path d="M3 18V6H1V18H3Z" fill="currentColor" />
-                                </svg>
+      viewBox="0 0 512 512"
+      fill="currentColor"
+      height="1em"
+      width="1em"
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={48}
+        d="M328 112L184 256l144 144"
+      />
+    </svg>
                             )}
                         </button>
                     </div>
@@ -279,29 +299,13 @@ export default function Sidebar({ onLogout }) {
                             onClick={() => onLogout()}
                         >
                             <svg
-                                style={{ minWidth: "24px", minHeight: "24px" }}
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                            style={{ minWidth: "24px", marginLeft: "2px", minHeight: "24px" }}
+                            viewBox="0 0 900 1000"
+                            fill="currentColor"
+                            height="1em"
+                            width="1em"
                             >
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7ZM9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12Z"
-                                    fill="currentColor"
-                                />
-                                <path
-                                    d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z"
-                                    fill="currentColor"
-                                />
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M5 1C2.79086 1 1 2.79086 1 5V19C1 21.2091 2.79086 23 5 23H19C21.2091 23 23 21.2091 23 19V5C23 2.79086 21.2091 1 19 1H5ZM19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
-                                    fill="currentColor"
-                                />
+                            <path d="M502 850V750h98v100c0 26.667-9.667 50-29 70s-43 30-71 30H100c-26.667 0-50-10-70-30S0 876.667 0 850V150c0-28 10-51.667 30-71s43.333-29 70-29h400c28 0 51.667 9.667 71 29s29 43 29 71v150h-98V150H100v700h402m398-326L702 720V600H252V450h450V330l198 194" />
                             </svg>
                             Log-out
                         </li>
